@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071514">
+  <meta name="description" content="馬祖群島 3D 探索與空間建造遊戲原型">
+  <title>Matsu Islands｜霧島電台</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="game-canvas" aria-label="馬祖群島 3D 遊戲畫面"></canvas>
+
+  <div id="vignette" aria-hidden="true"></div>
+  <div id="crosshair" aria-hidden="true"><span></span></div>
+
+  <header id="brand" class="glass-panel">
+    <span class="eyebrow">MATSU ISLANDS · FIELD NOTE 01</span>
+    <strong>霧島電台</strong>
+    <span id="location-label">南竿・舊海防聚落</span>
+  </header>
+
+  <section id="mission" class="glass-panel" aria-live="polite">
+    <div class="panel-kicker">今日任務</div>
+    <div class="mission-row">
+      <span>重新點亮信號台</span>
+      <strong id="signal-count">0 / 3</strong>
+    </div>
+    <div class="signal-track"><span id="signal-progress"></span></div>
+  </section>
+
+  <div id="mode-pill" aria-live="polite">
+    <span class="mode-dot"></span>
+    <span id="mode-label">探索模式</span>
+  </div>
+
+  <aside id="build-panel" class="glass-panel" aria-label="空間建造工具" hidden>
+    <div class="panel-heading">
+      <div>
+        <span class="panel-kicker">SPACE BUILDER</span>
+        <h2>空間建造</h2>
+      </div>
+      <button id="close-build" class="icon-button" type="button" aria-label="關閉建造模式">×</button>
+    </div>
+
+    <div class="tool-grid" role="group" aria-label="建造物件種類">
+      <button class="tool-button is-active" type="button" data-build-type="wall">
+        <span class="tool-icon wall-icon"></span><span><b>防風牆</b><small>按鍵 1</small></span>
+      </button>
+      <button class="tool-button" type="button" data-build-type="platform">
+        <span class="tool-icon floor-icon"></span><span><b>觀景台</b><small>按鍵 2</small></span>
+      </button>
+      <button class="tool-button" type="button" data-build-type="pillar">
+        <span class="tool-icon pillar-icon"></span><span><b>石柱</b><small>按鍵 3</small></span>
+      </button>
+      <button class="tool-button" type="button" data-build-type="lantern">
+        <span class="tool-icon light-icon"></span><span><b>引路燈</b><small>按鍵 4</small></span>
+      </button>
+    </div>
+
+    <div class="build-readout">
+      <span>預覽座標</span>
+      <code id="build-position">X 0 · Z 0</code>
+    </div>
+
+    <div class="build-actions">
+      <button id="place-object" class="primary-button" type="button">放置物件 <kbd>Enter</kbd></button>
+      <button id="rotate-object" type="button">旋轉 <kbd>R</kbd></button>
+      <button id="remove-object" class="danger-button" type="button">移除最近物件 <kbd>X</kbd></button>
+    </div>
+
+    <div class="save-row">
+      <button id="save-world" type="button">儲存場景</button>
+      <button id="export-world" type="button">匯出 JSON</button>
+      <button id="reset-world" type="button">重設</button>
+    </div>
+    <p class="panel-note">物件會儲存在這台裝置的瀏覽器中。預覽會吸附 1 公尺格線，放置上限 40 件。</p>
+  </aside>
+
+  <div id="interaction-prompt" class="glass-panel" hidden>
+    <kbd>E</kbd><span>啟動信號台</span>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <footer id="control-bar" class="glass-panel">
+    <div><kbd>WASD</kbd><span>移動</span></div>
+    <div><kbd>Mouse</kbd><span>視角</span></div>
+    <div><kbd>Space</kbd><span>跳躍</span></div>
+    <div><kbd>Shift</kbd><span>奔跑</span></div>
+    <div><kbd>E</kbd><span>互動</span></div>
+    <div><kbd>B</kbd><span>建造</span></div>
+    <div><kbd>F</kbd><span>全螢幕</span></div>
+  </footer>
+
+  <div id="mobile-controls" aria-label="觸控操作">
+    <div id="move-pad" aria-label="移動搖桿"><span id="move-knob"></span></div>
+    <div class="mobile-actions">
+      <button id="mobile-interact" type="button">E</button>
+      <button id="mobile-jump" type="button">跳</button>
+      <button id="mobile-build" type="button">建造</button>
+    </div>
+  </div>
+
+  <section id="start-screen">
+    <div class="start-atmosphere" aria-hidden="true"></div>
+    <div class="start-card">
+      <span class="eyebrow">A SMALL 3D EXPLORATION PROTOTYPE</span>
+      <h1>霧島<br><em>電台</em></h1>
+      <p class="start-copy">海霧吞沒了沿岸的信號。穿過石屋、戰地坑道與芒草坡，重新點亮三座信號台；也可以留下自己的牆、平台與引路燈，慢慢建成一座島。</p>
+      <button id="start-button" class="start-button" type="button">
+        <span>登島探索</span><span aria-hidden="true">↗</span>
+      </button>
+      <div class="start-meta">
+        <span>桌面：鍵盤＋滑鼠</span>
+        <span>行動裝置：觸控操作</span>
+      </div>
+    </div>
+    <div class="coordinates" aria-hidden="true">26.1605° N<br>119.9517° E</div>
+  </section>
+
+  <noscript>此遊戲需要啟用 JavaScript。</noscript>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>
