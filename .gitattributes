@@ -2,3 +2,4 @@
 * text=auto
 game/*.bin -text
 index.html -text
+media/* -text

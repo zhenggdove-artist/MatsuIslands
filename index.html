@@ -15,10 +15,13 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080b0e;col
       parts[i]=result;
     }}
     await Promise.all(Array.from({length:Math.min(4,manifest.files.length)},worker));stats.downloadMs=performance.now()-started;stats.phase='decode';
-    const packed=new Blob(parts);parts.length=0;const stream=manifest.gzip?packed.stream().pipeThrough(new DecompressionStream('gzip')):packed.stream();const html=await new Response(stream).text();stats.decodeMs=performance.now()-started-stats.downloadMs;
-    const frame=document.createElement('iframe');frame.id='sinGameFrame';frame.title='Game';frame.allow='autoplay; fullscreen';frame.allowFullscreen=true;frame.srcdoc=html;document.body.prepend(frame);stats.phase='initialize';
+    const packed=new Blob(parts);parts.length=0;const stream=manifest.gzip?packed.stream().pipeThrough(new DecompressionStream('gzip')):packed.stream();const gameBlob=await new Response(stream).blob();stats.decodeMs=performance.now()-started-stats.downloadMs;
+    const base=new URL('.',location.href).href.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    const gameUrl=URL.createObjectURL(new Blob(['<!doctype html><base href="'+base+'"><style>html,body{background:#080b0e}</style>',gameBlob],{type:'text/html'}));
+    const frame=document.createElement('iframe');frame.id='sinGameFrame';frame.title='Game';frame.style.background='#080b0e';frame.allow='autoplay; fullscreen';frame.allowFullscreen=true;frame.src=gameUrl;document.body.prepend(frame);stats.phase='initialize';
+    window.addEventListener('pagehide',()=>URL.revokeObjectURL(gameUrl),{once:true});
     watch=setInterval(()=>{try{const win=frame.contentWindow;if(!win.document.body?.classList.contains('sin-published')||typeof win.render_game_to_text!=='function')return;const state=JSON.parse(win.render_game_to_text());if(state.mode!=='play'||!state.sinTower?.sceneIsolation?.activeRootSceneId)return;
       completed=true;clearInterval(tick);clearInterval(watch);stats.phase='ready';stats.progress=100;stats.readyMs=performance.now()-started;fill.style.width='100%';meter.setAttribute('aria-valuenow','100');label.textContent='100%';window.render_game_to_text=()=>win.render_game_to_text();window.advanceTime=ms=>win.advanceTime?.(ms);boot.remove();frame.contentWindow.focus();
     }catch(error){fail(error);}},200);
   }catch(error){fail(error);}
-})({"files":["game/packed-0000.bin","game/packed-0001.bin","game/packed-0002.bin","game/packed-0003.bin","game/packed-0004.bin","game/packed-0005.bin","game/packed-0006.bin","game/packed-0007.bin","game/packed-0008.bin","game/packed-0009.bin","game/packed-0010.bin","game/packed-0011.bin","game/packed-0012.bin","game/packed-0013.bin","game/packed-0014.bin","game/packed-0015.bin","game/packed-0016.bin","game/packed-0017.bin","game/packed-0018.bin","game/packed-0019.bin","game/packed-0020.bin","game/packed-0021.bin","game/packed-0022.bin","game/packed-0023.bin","game/packed-0024.bin"],"bytes":202734930,"gzip":true});</script></body></html>
+})({"files":["game/runtime-v152.bin"],"bytes":410858,"gzip":true});</script></body></html>
