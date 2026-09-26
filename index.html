@@ -20,8 +20,8 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080b0e;col
     const gameUrl=URL.createObjectURL(new Blob(['<!doctype html><base href="'+base+'"><style>html,body{background:#080b0e}</style>',gameBlob],{type:'text/html'}));
     const frame=document.createElement('iframe');frame.id='sinGameFrame';frame.title='Game';frame.style.background='#080b0e';frame.allow='autoplay; fullscreen';frame.allowFullscreen=true;frame.src=gameUrl;document.body.prepend(frame);stats.phase='initialize';
     window.addEventListener('pagehide',()=>URL.revokeObjectURL(gameUrl),{once:true});
-    watch=setInterval(()=>{try{const win=frame.contentWindow;if(!win.document.body?.classList.contains('sin-published')||typeof win.render_game_to_text!=='function')return;const state=JSON.parse(win.render_game_to_text());if(state.mode!=='play'||!state.sinTower?.sceneIsolation?.activeRootSceneId)return;
+    watch=setInterval(()=>{try{const win=frame.contentWindow;if(!win.document.body?.classList.contains('sin-published')||typeof win.render_game_to_text!=='function')return;if(win.__sinSceneLoad?.errors?.length)throw Error(win.__sinSceneLoad.errors.join('; '));if(win.__sinSceneLoad?.pending>0)return;const state=JSON.parse(win.render_game_to_text());if(state.mode!=='play'||!state.sinTower?.sceneIsolation?.activeRootSceneId)return;
       completed=true;clearInterval(tick);clearInterval(watch);stats.phase='ready';stats.progress=100;stats.readyMs=performance.now()-started;fill.style.width='100%';meter.setAttribute('aria-valuenow','100');label.textContent='100%';window.render_game_to_text=()=>win.render_game_to_text();window.advanceTime=ms=>win.advanceTime?.(ms);boot.remove();frame.contentWindow.focus();
     }catch(error){fail(error);}},200);
   }catch(error){fail(error);}
-})({"files":["game/runtime-v152.bin"],"bytes":410858,"gzip":true});</script></body></html>
+})({"files":["game/runtime-v152.bin?v=3072058739f89e3b"],"bytes":423257,"gzip":true});</script></body></html>
