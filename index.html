@@ -16,12 +16,22 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080b0e;col
     }}
     await Promise.all(Array.from({length:Math.min(4,manifest.files.length)},worker));stats.downloadMs=performance.now()-started;stats.phase='decode';
     const packed=new Blob(parts);parts.length=0;const stream=manifest.gzip?packed.stream().pipeThrough(new DecompressionStream('gzip')):packed.stream();const gameBlob=await new Response(stream).blob();stats.decodeMs=performance.now()-started-stats.downloadMs;
+    // Resolve every bundled asset BEFORE exposing the game. Blob URLs keep later
+    // scene changes, video playback and worker decoding entirely local; HTTP cache
+    // residency alone cannot guarantee this on mobile Safari.
+    let gameHtml=await gameBlob.text();
+    const registry=gameHtml.match(/window\.__sinPublishedAssetTypes=Object\.freeze\((\{[^\n]*?\})\);/);
+    const assets=registry?Object.entries(JSON.parse(registry[1])):[],assetUrls=new Map();let assetCursor=0,assetDone=0;
+    stats.phase='assets';stats.assetTotal=assets.length;stats.assetReady=0;stats.assetBytes=0;
+    async function preload(){while(assetCursor<assets.length){const [name,mime]=assets[assetCursor++];const response=await fetch(new URL(name,location.href),{signal:abort.signal});if(!response.ok)throw Error('Asset HTTP '+response.status+': '+name);const blob=await response.blob();assetUrls.set(name,URL.createObjectURL(blob.slice(0,blob.size,mime)));stats.assetBytes+=blob.size;stats.assetReady=++assetDone;paint(60+Math.floor(assetDone/Math.max(1,assets.length)*25));}}
+    try{await Promise.all(Array.from({length:Math.min(4,assets.length)},preload));}catch(error){abort.abort();for(const url of assetUrls.values())URL.revokeObjectURL(url);throw error;}
+    gameHtml=gameHtml.replace(/\.\/media\/[a-f0-9]{64}\.[a-z0-9]+/g,name=>assetUrls.get(name)||name);
     const base=new URL('.',location.href).href.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-    const gameUrl=URL.createObjectURL(new Blob(['<!doctype html><base href="'+base+'"><style>html,body{background:#080b0e}</style>',gameBlob],{type:'text/html'}));
+    const gameUrl=URL.createObjectURL(new Blob(['<!doctype html><base href="'+base+'"><style>html,body{background:#080b0e}</style>',gameHtml],{type:'text/html'}));gameHtml='';
     const frame=document.createElement('iframe');frame.id='sinGameFrame';frame.title='Game';frame.style.background='#080b0e';frame.allow='autoplay; fullscreen';frame.allowFullscreen=true;frame.src=gameUrl;document.body.prepend(frame);stats.phase='initialize';
-    window.addEventListener('pagehide',()=>URL.revokeObjectURL(gameUrl),{once:true});
+    window.addEventListener('pagehide',()=>{URL.revokeObjectURL(gameUrl);for(const url of assetUrls.values())URL.revokeObjectURL(url);},{once:true});
     watch=setInterval(()=>{try{const win=frame.contentWindow;if(!win.document.body?.classList.contains('sin-published')||typeof win.render_game_to_text!=='function')return;if(win.__sinSceneLoad?.errors?.length)throw Error(win.__sinSceneLoad.errors.join('; '));if(win.__sinSceneLoad?.pending>0)return;const state=JSON.parse(win.render_game_to_text());if(state.mode!=='play'||!state.sinTower?.sceneIsolation?.activeRootSceneId)return;
       completed=true;clearInterval(tick);clearInterval(watch);stats.phase='ready';stats.progress=100;stats.readyMs=performance.now()-started;fill.style.width='100%';meter.setAttribute('aria-valuenow','100');label.textContent='100%';window.render_game_to_text=()=>win.render_game_to_text();window.advanceTime=ms=>win.advanceTime?.(ms);boot.remove();frame.contentWindow.focus();
     }catch(error){fail(error);}},200);
   }catch(error){fail(error);}
-})({"files":["game/runtime-v152.bin?v=3072058739f89e3b"],"bytes":423257,"gzip":true});</script></body></html>
+})({"files":["game/runtime-v152.bin?v=4d44deef9f50b499"],"bytes":423533,"gzip":true});</script></body></html>
