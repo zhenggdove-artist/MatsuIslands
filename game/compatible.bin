@@ -567,6 +567,11 @@
 #sinInteractionClose::before,#sinInteractionClose::after,#sinQuestionClose::before,#sinQuestionClose::after{content:'';position:absolute;left:50%;top:50%;width:17px;height:2px;background:var(--pixel-paper,#f4d66f);pointer-events:none;transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 3px var(--pixel-paper,#f4d66f)}
 #sinInteractionClose::after,#sinQuestionClose::after{transform:translate(-50%,-50%) rotate(-45deg)}
 @media(max-width:600px){#sinInteractionClose,#sinQuestionClose{right:8px!important;top:8px!important}#sinInteractionTitle{padding-right:48px!important}}
+
+/* Password-only direction control above the gate, below transition fade. */
+body.sin-password-pad #mobileControls{display:block!important;z-index:245!important;left:0!important;top:0!important;width:100vw!important;height:100vh!important;pointer-events:none!important}
+body.sin-password-pad #mobileMovePad{display:block!important;position:absolute!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;transform:none!important;pointer-events:auto!important;touch-action:none}
+body.sin-password-pad #mobileJumpButton,body.sin-password-pad #sinMobileLayoutToolbar{display:none!important}
 </style>
 <script type="importmap">
 {
@@ -9628,11 +9633,43 @@ function isInsideMobileControls(target){
 
 const sinMobileInput={x:0,y:0,active:false};
 function resetMobileMoveKeys(){
+  clearSinPortalPadInput();
   sinMobileInput.x=0;sinMobileInput.y=0;sinMobileInput.active=false;
   keys.w = false; keys.a = false; keys.s = false; keys.d = false;
 }
 
+// BEGIN PORTAL MOBILE PAD
+// Temporary password-only layout; never writes the saved mobile layout.
+const sinPortalPad={active:false,direction:null,timer:null};
+function clearSinPortalPadInput(){clearTimeout(sinPortalPad.timer);sinPortalPad.timer=null;sinPortalPad.direction=null;}
+function isSinPortalPadMode(){return sinPortalPasswordVisible()&&sinTowerPortalGate.active&&sinTowerPortalGate.phase==='input'&&!sinTowerPortalLayoutEditor.active&&(matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0||STATE?.displayOrientation==='portrait');}
+function routeSinPortalPadInput(dx,dy){
+  if(!isSinPortalPadMode()){if(sinPortalPad.active){clearSinPortalPadInput();return true;}return false;}
+  const direction=Math.max(Math.abs(dx),Math.abs(dy))<=10?null:Math.abs(dx)>Math.abs(dy)?(dx<0?'ArrowLeft':'ArrowRight'):(dy<0?'ArrowUp':'ArrowDown');
+  if(direction===sinPortalPad.direction)return true;clearSinPortalPadInput();sinPortalPad.direction=direction;
+  if(direction){const send=repeat=>{if(!isSinPortalPadMode()||sinPortalPad.direction!==direction)return clearSinPortalPadInput();handleSinTowerPortalPasswordKey({code:direction,repeat,preventDefault(){},stopPropagation(){}});if(isSinPortalPadMode())sinPortalPad.timer=setTimeout(()=>send(true),repeat?130:380);};send(false);}
+  return true;
+}
+function restoreSinPortalPad(){
+  if(!sinPortalPad.active)return;sinPortalPad.active=false;clearSinPortalPadInput();document.body.classList.remove('sin-password-pad');
+  const pad=$('mobileMovePad');pad?.__sinStopMove?.();resetMobileMoveKeys();if($('mobileMoveKnob'))$('mobileMoveKnob').style.transform='translate3d(0,0,0)';applySinTowerMobileControlsLayout();
+}
+function layoutSinPortalPad(){
+  if(!isSinPortalPadMode()){restoreSinPortalPad();return;}
+  const overlay=$('sinPortalPasswordOverlay'),shell=overlay?.querySelector('.sin-portal-password-shell'),group=$('sinPortalPasswordGroup'),pad=$('mobileMovePad');if(!overlay||!shell||!group||!pad)return;
+  if(!sinPortalPad.active){resetMobileMoveKeys();sinPortalPad.active=true;}document.body.classList.add('sin-password-pad');
+  const bounds=overlay.getBoundingClientRect(),size=Math.max(64,Math.min(104,bounds.width*.25,bounds.height*.22)),gap=16,bottomGap=24;
+  const nodes=[shell,group],rects=nodes.map(n=>n.getBoundingClientRect()),extent=Math.max(...rects.map(r=>r.bottom-bounds.top));
+  const scale=Math.min(1,Math.max(1,bounds.height-size-gap-bottomGap)/Math.max(1,extent));
+  nodes.forEach((node,i)=>{const r=rects[i];Object.assign(node.style,{left:(bounds.width/2+(r.left+r.width/2-bounds.left-bounds.width/2)*scale)+'px',top:((r.top+r.height/2-bounds.top)*scale)+'px',width:r.width*scale+'px',height:r.height*scale+'px'});});
+  const slots=group.getBoundingClientRect();group.style.setProperty('--portal-slot-font-size',Math.max(3,Math.min(slots.height*.62,slots.width*.17))+'px');group.style.setProperty('--portal-slot-gap',Math.max(.35,Math.min(18,slots.width*.035))+'px');
+  const top=Math.max(...nodes.map(n=>n.getBoundingClientRect().bottom))+gap;
+  Object.assign(pad.style,{left:(bounds.left+(bounds.width-size)/2)+'px',top:top+'px',width:size+'px',height:size+'px'});
+}
+
+// END PORTAL MOBILE PAD
 function applyMobileMoveVector(dx, dy){
+  if(routeSinPortalPadInput(dx,dy))return;
   const dead = 10;
   sinMobileInput.active=true;sinMobileInput.x=dx>dead?1:dx<-dead?-1:0;sinMobileInput.y=dy<-dead?1:dy>dead?-1:0;
   keys.w = dy < -dead;
@@ -9669,6 +9706,7 @@ function setupMobileControls(){
     resetMobileMoveKeys();
     try{ pad.releasePointerCapture?.(ev.pointerId); }catch{}
   };
+  pad.__sinStopMove=()=>stopMove({pointerId:movePointerId});
   pad.addEventListener('pointerdown', ev=>{
     if(sinTowerMobileLayoutEditor.active) return;
     ev.preventDefault(); ev.stopPropagation();
@@ -15189,6 +15227,7 @@ function applySinTowerPortalPasswordLayout(){
   group.style.setProperty('--portal-slot-font-size',Math.max(3,Math.min(groupHeight*.62,groupWidth*.17))+'px');
   const portalFx=getSinTowerPortalPasswordFx();group.style.setProperty('--portal-slot-text-scale',portalFx.textScale);group.style.setProperty('--portal-slot-text-weight',portalFx.textWeight);
   group.style.setProperty('--portal-slot-radius',Math.max(1,Math.min(10,Math.min(groupHeight,groupWidth*.25)*.12))+'px');
+  layoutSinPortalPad();
 }
 
 function setSinTowerPortalLayoutRect(target,next){
@@ -15287,6 +15326,7 @@ function ensureSinTowerMobileLayoutUi(){
 }
 
 function applySinTowerMobileControlsLayout(){
+  if(sinPortalPad.active&&isSinPortalPadMode()){applySinTowerPortalPasswordLayout();return;}
   const controls=$('mobileControls');if(!controls||!STATE)return;ensureSinTowerMobileLayoutUi();
   const layout=getSinTowerMobileControlsLayout(),entries=[['movePad',$('mobileMovePad')],['jump',$('mobileJumpButton')]];
   for(const [key,node] of entries){const rect=layout[key];if(!node||!rect)continue;Object.assign(node.style,{left:rect.x+'%',top:rect.y+'%',width:rect.w+'%',height:rect.h+'%'});node.classList.toggle('selected',sinTowerMobileLayoutEditor.active&&sinTowerMobileLayoutEditor.selected===key);}
@@ -15526,7 +15566,7 @@ function syncSinTowerPortalScreenFx(fx=getScreenFxConfig()){
 function setSinTowerPortalPasswordOverlay(visible){
   const overlay=$('sinPortalPasswordOverlay');if(!overlay)return;
   overlay.classList.toggle('open',!!visible);overlay.setAttribute('aria-hidden',visible?'false':'true');
-  if(!visible)cancelAnimationFrame(sinPortalSmooth.raf);
+  if(!visible){restoreSinPortalPad();cancelAnimationFrame(sinPortalSmooth.raf);}
   if(visible){
     const fx=getScreenFxConfig(),sky=$('sinPortalPasswordSky'),src=STATE?.skyTexture||SIN_TOWER_BUNDLED_STAIR_BACKGROUND,frame=$('sinPortalPasswordFrame');
     syncSinTowerPortalScreenFx(fx);
