@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" style="--fx-canvas-filter: none; --fx-overlay-opacity: 0; --pixel-paper: #f4d66f; --pixel-ink: #14263d;"><head><script>window.__sinPublishedAssetTypes=Object.freeze({"./media/b882c9352ba2c3ef8b85f0d432bee0486e61906dda836fe565a62af1766b2745.woff":"font/woff","./media/00305b783bce0089a5b916f70fb0e18f31f678936eae66d10d02dbadc09903b8.woff":"font/woff","./media/11b48441308eac8173a157e2c86fe5dc02d95de198613e121ec052c7f39b8e7f.jpg":"image/jpeg","./media/cc607217086f9033c02bf8c99a4c7a1ad63b11ab9d2a383fcfbd3aba7d3b3591.png":"image/png","./media/0088106edde4bd3000cd3a75a403a573a00407d39b5597b0ab7a986a29727d87.png":"image/png","./media/400d13361c2c2611372dc4ac34d342e928f294300ebc39aeb7603c6a7e1a60be.png":"image/png","./media/28d133fec3f1cec35e9d699c963eb124540743ca07036289462e2280d63aaf10.gif":"image/gif","./media/9c2f12deea6dcf265ed548d5f2719546fb000d936bec3d3fbd7f49354a7724bb.png":"image/png","./media/0d0490711d2c5b294eaa4f13d6c43ca040c7b6218c897b106b9abb9173125dd1.jpg":"image/jpeg","./media/2a32fb2f8b941549f72ff9393c09148fea7fc0ea109e1fc3dbb24d039248b7cc.bin":"text/plain","./media/1a9867124bdb42e6d3a5d5ed9a62fca43c31b465bab0e64ad120297bbc36b1eb.bin":"application/octet-stream","./media/dcbdd51faaa1049882c158769937450c8100e1bec748158cd1e3e9e4aae1a21e.bin":"application/octet-stream","./media/d90877e920242d4107eacc442d8bb17168588b23ccfeed9a9752c3bf05a7e3b7.bin":"application/octet-stream","./media/d28496079b617a46d56e19f2206db2a56030660f3ec1dd95eac5aaba4823c801.png":"image/png","./media/cdd8aa1ac20491795c8742b5acf814387f105c03578428578f7613b89c0ad35d.mp3":"audio/mpeg","./media/baf50fb0b659f01bddacd37d81a5ad712a14400cba6b7a261a1cd786c7e0d62a.jpg":"image/jpeg","./media/8eae4b6a90edd470cc8cc6bd0e2fac221ccb2dba1056ea36e727c29ff393a005.gif":"image/gif","./media/3187e1ea6e5d4344bc4b8c045bcf1e941b048acabe25538b21f1ff1759cc5e9e.mp3":"audio/mpeg","./media/721ed73cca51caf258473ade6c858942876ea7dffa09a2256688dbbead9cee86.mp3":"audio/mpeg","./media/7f8893a44e41dbd4a8aea14bb8f0b41c2fd2f0acec28aaa6ee1a30d8fd36c081.gif":"image/gif","./media/c46d6d949ea68fb087fd7c9a8aa8820e845582dc8ba8fe85e7a73bcc1a940284.gif":"image/gif","./media/ea7b508facc236cdecb2358cccd9f6dd177fd3750d879c46d389a850a2e96938.gif":"image/gif","./media/35fa7460d58f757c9fffea017ca8749adb3574b2dc7e64188664c3530b046287.gif":"image/gif","./media/89c9ddc27dc6acb56ed0e0d6ead6a4c345baa6fcc60779062a998f2aeac78c66.gif":"image/gif","./media/e29b60e74898d719613a18c8c7b591cc509fb9d3d51f25ea0bdd4846cd2a8825.gif":"image/gif","./media/f2e90a1218aacd54be1dfb9cac02aef6e486cf5612cf150e3bbd74a38ab7c823.gif":"image/gif","./media/c59b84c40d2ee9e901df1ba13af3984b9407378450daf8436faca227d794ea47.gif":"image/gif","./media/439e59a61104e53a3ac91db590f0f040513d83dbfeb75ae5979d00556d384f56.gif":"image/gif","./media/4628afea4f4e570b917bb6dfd06185d56f7f537876f38b45330f6eae1883a616.gif":"image/gif","./media/329e3fee16505cbcbff1907fbfbd948c2ef2f8d755c2947045177d9c86bc2d54.mp3":"audio/mpeg","./media/b250139cf946955f979aef671ae914a07841edfe81a61a2a8117d2a85d3b6aa3.mp4":"video/mp4","./media/a981f96f0a7059e3241fff70c3d45bd1a821c9bc43512b93d5541aff0e383165.mp4":"video/mp4","./media/df999840e7643e1b2bb82b95a40b25f874892d90da3847dee145d4366abad371.mp4":"video/mp4","./media/0556c6b1fdd495fd5362686aff91a2473df867209560af693fa8adaf9f4f4d5c.mp4":"video/mp4","./media/182202cf25950d7884888ee5dfd04d3bdfe1d72d0b367c0db55181f8c689cb7c.mp4":"video/mp4","./media/2fb3beb2ebbac49fc5773f4b906a948acc7f09b43c4f72027846e0bf198fea39.mp4":"video/mp4","./media/ab34d9b2d7a76d5d36a759c5cfa6d7caf4a404a63c7215d656dd888e4a94c1c7.gif":"image/gif","./media/9b255775b60c6104bab5fa206f43c341bd1203384ce69a52a2c77ec9dea75580.mp3":"audio/mpeg","./media/a63658fa09fd294d4b2793b1d93041613261bfb8efa233198ddd2f7d5e267d32.bin":"application/octet-stream","./media/c259c7a896cb0a47cc30e7e28134a5e8253493d7e69808f75ceaaca3fbf93045.webp":"image/webp","./media/96cb964f09fa9bd1817d8030aff26691f73c6a386649d3960bd2d48d8624d8d6.png":"image/png","./media/7dce477b9025fa47d5bac0159aa624e873b1fe8768521ad363d25d7b7a00cec5.png":"image/png","./media/0552a89787a52adf65702372884cfef45121481762c77bb792116f3a856cddb6.png":"image/png","./media/c19c3d25912ca4caca23971d2640ad4ae43e49ad169bcc1ffeb33092c6568f13.png":"image/png","./media/6ce9088d208909836d34be803f080620d15ddb1a7fd1f8b4df69f01d50508c39.png":"image/png","./media/778ea16dd27ba7cc348ad3d27b729f5a8d4de3191333a07624270a4c67256d5e.png":"image/png","./media/6489ee2a814944df0649301f478d72371522af3f00076c5d598219285a319950.png":"image/png","./media/183adda2aec1b1e5a699eb1c38f96fa60c568fabe747688d9d45e447966f4fb0.png":"image/png","./media/67de668763c7e6431ed1c9e041137764f6aed46bf83cf6ad71071dc3c59a4694.png":"image/png","./media/29872bfbd1c18b517576451dee0579852d95d6911803910ee62c8b96cd61c557.png":"image/png","./media/a63658fa09fd294d4b2793b1d93041613261bfb8efa233198ddd2f7d5e267d32.glb":"model/gltf-binary","./media/bbf1af79874075abb4c79ac17a15b9d64d0e4bfabcd0e98113878eb2527a5fb2.png":"image/png","./media/3666093875870baafa7826911244178bc11d0ad086d4311d81cd2a40a864ebc3.png":"image/png","./media/41f9a6ba9706e7ffae01d3106f1f3eae9010fc2bc0e0ba55c619786ab3f9a723.png":"image/png","./media/2d4195910cfc8b5db96e0095021ee8e7b1cb108ea06c053bcbc91393f26102e8.gif":"image/gif"});function sinPublishedAssetMatches(value,test){const mime=window.__sinPublishedAssetTypes[value];if(!mime)return false;const sample="data:"+mime+";base64,AA==";return typeof test==="string"?sample.startsWith(test):test.test(sample);}</script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>斷罪塔</title>
 <style>
   @font-face{font-family:'SinTowerTypography';src:url('./media/b882c9352ba2c3ef8b85f0d432bee0486e61906dda836fe565a62af1766b2745.woff') format('woff');font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+0020-007E,U+00A0-024F}
@@ -572,6 +572,13 @@
 body.sin-password-pad #mobileControls{display:block!important;z-index:245!important;left:0!important;top:0!important;width:100vw!important;height:100vh!important;pointer-events:none!important}
 body.sin-password-pad #mobileMovePad{display:block!important;position:absolute!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;transform:none!important;pointer-events:auto!important;touch-action:none}
 body.sin-password-pad #mobileJumpButton,body.sin-password-pad #sinMobileLayoutToolbar{display:none!important}
+
+/* Browser zoom/selection protection; custom camera input still receives events. */
+html,body{touch-action:pan-x pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+img,canvas{-webkit-user-drag:none}#canvas{touch-action:none}
+input,textarea,[contenteditable=true],[contenteditable=""]{-webkit-user-select:text;user-select:text}
+@media(pointer:coarse){input,textarea,select{font-size:max(16px,1em)}}
 </style>
 <script type="importmap">
 {
@@ -9678,6 +9685,18 @@ function applyMobileMoveVector(dx, dy){
   keys.d = dx > dead;
 }
 
+// BEGIN SITE GESTURES
+// Browser gestures only: never stop propagation of camera wheel / two-touch input.
+function sinEditableGestureTarget(target){return !!target?.closest?.('input,textarea,[contenteditable="true"],[contenteditable=""]');}
+for(const name of ['selectstart','dragstart','dblclick'])document.addEventListener(name,event=>{
+  if(!sinEditableGestureTarget(event.target)&&event.cancelable)event.preventDefault();
+},{capture:true,passive:false});
+for(const name of ['gesturestart','gesturechange','gestureend'])document.addEventListener(name,event=>{
+  if(event.cancelable)event.preventDefault();
+},{passive:false});
+document.addEventListener('wheel',event=>{if(event.ctrlKey&&event.cancelable)event.preventDefault();},{passive:false});
+
+// END SITE GESTURES
 function setupMobileControls(){
   const pad = $('mobileMovePad');
   const knob = $('mobileMoveKnob');
@@ -15400,25 +15419,62 @@ const sinTowerPortalGate={active:false,mode:'idle',phase:'idle',portalId:null,so
 function clearSinTowerPortalGateTimers(){for(const timer of sinTowerPortalGate.timers)clearTimeout(timer);sinTowerPortalGate.timers.length=0;}
 function scheduleSinTowerPortalGate(callback,delay){const sequence=sinTowerPortalGate.sequence,timer=setTimeout(()=>{if(sequence===sinTowerPortalGate.sequence)callback();},delay);sinTowerPortalGate.timers.push(timer);return timer;}
 function setSinTowerPortalFade(opaque,duration=1000){const fade=$('sinPortalTransitionFade');if(!fade)return;fade.style.transitionDuration=Math.max(0,duration)+'ms';fade.getBoundingClientRect();fade.classList.toggle('opaque',!!opaque);}
-const sinPortalSmooth={source:null,promise:null,frames:[],durations:[],cycle:0,start:0,canvas:null,raf:0,generation:0,index:0,blend:0};
+const sinPortalSmooth={source:null,promise:null,frames:[],durations:[],cycle:0,start:0,canvas:null,raf:0,generation:0,index:0,blend:0,stream:null};
 function sinPortalPasswordVisible(){return !!$('sinPortalPasswordOverlay')?.classList.contains('open');}
 function sinPortalTimeline(elapsed,durations){const cycle=durations.reduce((a,b)=>a+b,0);let t=((elapsed%cycle)+cycle)%cycle,index=0;while(index<durations.length-1&&t>=durations[index])t-=durations[index++];return {index,next:(index+1)%durations.length,blend:t/durations[index]};}
+function showSinPortalCanvas(width,height){
+  const s=sinPortalSmooth,original=$('sinPortalPasswordFrame');
+  if(!s.canvas){s.canvas=document.createElement('canvas');s.canvas.id='sinPortalSmoothCanvas';s.canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';original.after(s.canvas);}
+  if(s.canvas.width!==width)s.canvas.width=width;if(s.canvas.height!==height)s.canvas.height=height;
+  s.canvas.hidden=false;original.style.visibility='hidden';original._sinPortalSource=s.source;original.removeAttribute('src');
+}
+async function prepareSinPortalStream(source,token){
+  const s=sinPortalSmooth,slot=sinGifWorkerSlot(),stream={slot,key:'portal:'+token+':'+source,pending:false,recycle:null,disposed:false};slot.loads++;s.stream=stream;
+  const result=await sinGifRequest(slot,{type:'load',key:stream.key,url:new URL(source,document.baseURI).href});
+  if(token!==s.generation||stream.disposed){slot.worker.postMessage({type:'release',key:stream.key});return;}
+  stream.width=result.width;stream.height=result.height;s.durations=result.durations;s.cycle=s.durations.reduce((a,b)=>a+b,0);s.start=performance.now();
+  paintSinPortalStream(stream,result);drawSinPortalSmooth();
+}
+function paintSinPortalStream(stream,result){
+  if(stream.disposed||sinPortalSmooth.stream!==stream)return;
+  showSinPortalCanvas(stream.width,stream.height);
+  sinPortalSmooth.canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(result.pixels),stream.width,stream.height),0,0);
+  stream.recycle=result.pixels;sinPortalSmooth.index=result.index;
+}
 async function prepareSinPortalSmooth(){
   if(!sinPortalPasswordVisible())return;
   const source=getSinTowerPortalPasswordGifSource();if(sinPortalSmooth.source===source)return sinPortalSmooth.promise;
-  const s=sinPortalSmooth,token=++s.generation;s.source=source;cancelAnimationFrame(s.raf);for(const frame of s.frames)frame.close();s.frames=[];if(s.canvas)s.canvas.hidden=true;const original=$('sinPortalPasswordFrame');if(original)original.style.visibility='';
+  const s=sinPortalSmooth,token=++s.generation;s.source=source;cancelAnimationFrame(s.raf);for(const frame of s.frames)frame.close();s.frames=[];
+  if(s.stream){s.stream.disposed=true;s.stream.slot.loads--;s.stream.slot.worker.postMessage({type:'release',key:s.stream.key});s.stream=null;}
+  if(s.canvas)s.canvas.hidden=true;const original=$('sinPortalPasswordFrame');if(original){original.style.visibility='';original.setAttribute('src',source);}
   s.promise=(async()=>{
-    if(typeof ImageDecoder!=='function'||!await ImageDecoder.isTypeSupported('image/gif'))return;
+    // Safari cannot rely on ImageDecoder or filtered native GIF repainting.
+    // Explicit full-resolution worker frames keep the filter invalidated, with bounded memory.
+    if(typeof ImageDecoder!=='function'||!await ImageDecoder.isTypeSupported('image/gif')){await prepareSinPortalStream(source,token);return;}
     const data=await (await fetch(source)).arrayBuffer(),decoder=new ImageDecoder({data,type:'image/gif',preferAnimation:true}),frames=[],durations=[];
     try{await decoder.tracks.ready;const count=decoder.tracks.selectedTrack.frameCount;
       for(let index=0;index<count;index++){const {image}=await decoder.decode({frameIndex:index});try{if(image.displayWidth*image.displayHeight*count*4>192*1024*1024)throw Error('Full-resolution animation exceeds cache budget');durations.push(Math.max(20,(image.duration||100000)/1000));frames.push(await createImageBitmap(image));}finally{image.close();}if(token!==s.generation)throw Error('superseded');}
       if(!frames.length)return;s.frames=frames;s.durations=durations;s.cycle=durations.reduce((a,b)=>a+b,0);s.start=performance.now();
-      if(!s.canvas){s.canvas=document.createElement('canvas');s.canvas.id='sinPortalSmoothCanvas';s.canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;pointer-events:none';original.after(s.canvas);}s.canvas.width=frames[0].width;s.canvas.height=frames[0].height;s.canvas.hidden=false;original.style.visibility='hidden';original._sinPortalSource=source;original.removeAttribute('src');drawSinPortalSmooth();
-    }catch(error){for(const frame of frames)frame.close();if(token===s.generation)console.warn('Using native GIF playback:',error.message);}finally{decoder.close();}
-  })().catch(error=>{if(token===s.generation)console.warn('Using native GIF playback:',error.message);});return s.promise;
+      showSinPortalCanvas(frames[0].width,frames[0].height);drawSinPortalSmooth();
+    }catch(error){for(const frame of frames)frame.close();if(token===s.generation){s.frames=[];await prepareSinPortalStream(source,token);}}finally{decoder.close();}
+  })().catch(error=>{if(token===s.generation){
+    // A transient decoder error must not poison the cached source forever.
+    if(s.stream){s.stream.disposed=true;s.stream.slot.loads--;s.stream.slot.worker.postMessage({type:'release',key:s.stream.key});s.stream=null;}
+    s.source=null;if(s.canvas)s.canvas.hidden=true;original.style.visibility='';original.setAttribute('src',source);
+    console.warn('Using native GIF playback:',error.message);
+  }});return s.promise;
 }
 function drawSinPortalSmooth(){
-  const s=sinPortalSmooth;cancelAnimationFrame(s.raf);if(!sinPortalPasswordVisible()||!s.frames.length)return;
+  const s=sinPortalSmooth;cancelAnimationFrame(s.raf);if(!sinPortalPasswordVisible())return;
+  if(s.stream){
+    const stream=s.stream;if(!s.durations.length||!stream.width)return;
+    const {index}=sinPortalTimeline(performance.now()-s.start,s.durations);
+    if(index!==s.index&&!stream.pending){stream.pending=true;const recycle=stream.recycle;stream.recycle=null;
+      sinGifRequest(stream.slot,{type:'frame',key:stream.key,index,recycle}).then(result=>paintSinPortalStream(stream,result)).catch(error=>{if(!stream.disposed)console.warn('Password GIF decode failed:',error.message);}).finally(()=>{stream.pending=false;});
+    }
+    s.raf=requestAnimationFrame(drawSinPortalSmooth);return;
+  }
+  if(!s.frames.length)return;
   const {index,next,blend}=sinPortalTimeline(performance.now()-s.start,s.durations);s.index=index;s.blend=blend;const ctx=s.canvas.getContext('2d');ctx.clearRect(0,0,s.canvas.width,s.canvas.height);ctx.globalAlpha=1-blend;ctx.globalCompositeOperation='source-over';ctx.drawImage(s.frames[index],0,0);ctx.globalCompositeOperation='lighter';ctx.globalAlpha=blend;ctx.drawImage(s.frames[next],0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';s.raf=requestAnimationFrame(drawSinPortalSmooth);
 }
 
