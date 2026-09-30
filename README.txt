@@ -1,1 +1,1 @@
-發布方式：解壓縮後，將 index.html、game 資料夾與 .nojekyll 一起放在 GitHub Pages 的發布目錄。不要只上傳 ZIP。這是純遊玩版；編輯請保留原本的完整可編輯存檔。Three.js 模組仍由 HTTPS CDN 載入，需連網。
+將解壓縮後全部內容發布到 GitHub Pages。保留完整可編輯 HTML 作為編輯母檔。核心基準：e786b1b4f3b3e89b07ef34dd9f92857189fc1a68
